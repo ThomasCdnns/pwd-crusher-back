@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  backend:
+    image: pwd-crusher-back:latest
+    volumes:
+      - pwd-crusher-back:/usr/src/app
+    ports:
+      - 4200:4200
+    networks:
+      - internal
+    depends_on:
+      - redis
+  redis:
+    image: redis:latest
+    networks:
+      - internal
+    ports:
+      - 6379:6379
+
+networks:
+  internal:
+volumes:
+  pwd-crusher-back:
